@@ -9,7 +9,10 @@ SRC =		ft_strjoin.c \
 		ft_split.c \
 		ft_itoa.c \
 		ft_strlcpy.c \
-		get_next_line.c
+		ft_strncmp.c \
+		ft_strnstr.c \
+		get_next_line.c \
+		
 
 OBJECTS = $(SRC:.c=.o)
 

@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_update.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mukeles <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 00:45:14 by mukeles           #+#    #+#             */
+/*   Updated: 2022/06/28 00:45:19 by mukeles          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	player_update_image(char key, t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->img_player);  //oyuncunun hareket ettiği yöne göre baktığı yön değişeceği için eski image i yok edip yeni image basar
+	mlx_destroy_image(game->mlx, game->img_player);
 	if (key == 'w')
 		game->img_player = mlx_xpm_file_to_image
-			(game->mlx, "assets/images/PD.xpm", &game->img_w, &game->img_h);  //w veya d ise yani sağ ya da yukarı gidecekse yönü sağa bakar
+			(game->mlx, "assets/images/PD.xpm", &game->img_w, &game->img_h);
 	else if (key == 's')
 		game->img_player = mlx_xpm_file_to_image
-			(game->mlx, "assets/images/PA.xpm", &game->img_w, &game->img_h); //s veya a ise yani sol ya da aşağı gidecekse yönü sola bakar.
+			(game->mlx, "assets/images/PA.xpm", &game->img_w, &game->img_h);
 	else if (key == 'd')
 		game->img_player = mlx_xpm_file_to_image
 			(game->mlx, "assets/images/PD.xpm", &game->img_w, &game->img_h);
@@ -20,27 +32,27 @@ static void	player_update_image(char key, t_game *game)
 void	player_w(t_game *game)
 {
 	player_update_image('w', game);
-	if (game->map[game->y_player][game->x_player] == 'E'  // w ye basınca y bir birim azalacak yeni harekte edeceği kutucuk E ise ve toplayacağı bir şey kalmadıysa oyun bitecek
+	if (game->map[game->y_player][game->x_player] == 'E'
 			&& game->n_collect == 0)
 	{
 		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player + 1][game->x_player] = '0'; // playerın eski yerine background koyacak
+		game->map[game->y_player + 1][game->x_player] = '0';
 		game->moves++;
-		game->endgame = 1; // endgame 1 yaptık o zaman if(!1) olacak ve keypresste kontrol yapmıştık. return(0) olacak
-		map_draw(game); // haritayı tekrar düzenlemeye gönderiyoruz
+		game->endgame = 1;
+		map_draw(game);
 	}
 	else if (game->map[game->y_player][game->x_player] == '1'
-			|| game->map[game->y_player][game->x_player] == 'E')  // gideceği yer duvar veya çıkışsa eski konumunda dursun diye y yi arttırdık(önce azaltmıştık bir kere çünkü)
+			|| game->map[game->y_player][game->x_player] == 'E')
 		game->y_player += 1;
 	else
 	{
-		mlx_clear_window(game->mlx, game->win);  // yukarıdakilerin hiçbiri değilse pencereyi bir temizleyelim
-		if (game->map[game->y_player][game->x_player] == 'C')  // coinse collecti bir azaltıp toplayalım.(collect içinde toplam sayıyı tutuyor)
+		mlx_clear_window(game->mlx, game->win);
+		if (game->map[game->y_player][game->x_player] == 'C')
 			game->n_collect -= 1;
-		game->map[game->y_player][game->x_player] = 'P'; // player yeni yerine atanıyor
-		game->map[game->y_player + 1][game->x_player] = '0'; // playerın eski yeri background oluyor
+		game->map[game->y_player][game->x_player] = 'P';
+		game->map[game->y_player + 1][game->x_player] = '0';
 		game->moves++;
-		map_draw(game); // harita güncellemeye gidiyor
+		map_draw(game);
 	}
 }
 
@@ -105,7 +117,7 @@ void	player_a(t_game *game)
 			&& game->n_collect == 0)
 	{
 		mlx_clear_window(game->mlx, game->win);
-		game->map[game->y_player][game->x_player + 1] = '0';
+		game->map[game->y_player - 1][game->x_player] = '0';
 		game->moves++;
 		game->endgame = 1;
 		map_draw(game);

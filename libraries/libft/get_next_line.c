@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faozturk <faozturk@42kocaeli.tr>           +#+  +:+       +#+        */
+/*   By: mukeles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 14:41:09 by faozturk          #+#    #+#             */
-/*   Updated: 2022/04/26 17:39:00 by faozturk         ###   ########.tr       */
+/*   Created: 2022/06/28 01:16:00 by mukeles           #+#    #+#             */
+/*   Updated: 2022/06/28 01:16:01 by mukeles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*get_next_line(int fd)

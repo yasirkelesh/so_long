@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: faozturk <faozturk@42kocaeli.tr>           +#+  +:+       +#+        */
+/*   By: mukeles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 12:10:29 by faozturk          #+#    #+#             */
-/*   Updated: 2022/02/18 15:48:38 by faozturk         ###   ########.tr       */
+/*   Created: 2022/06/28 01:14:50 by mukeles           #+#    #+#             */
+/*   Updated: 2022/06/28 01:14:51 by mukeles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	count(const char *s, char c)

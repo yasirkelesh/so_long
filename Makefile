@@ -14,7 +14,7 @@ SOURCES_FILES	=	so_long.c \
 					gameplay.c \
 					exit_game.c
 
-SOURCES_DIR		=	 ./
+SOURCES_DIR		=	sources
 
 HEADER			=	$(SOURCES_DIR)/so_long.h
 

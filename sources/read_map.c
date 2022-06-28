@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukeles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 01:15:27 by mukeles           #+#    #+#             */
-/*   Updated: 2022/06/28 01:15:29 by mukeles          ###   ########.fr       */
+/*   Created: 2022/06/28 00:45:32 by mukeles           #+#    #+#             */
+/*   Updated: 2022/06/28 00:45:33 by mukeles          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	**read_map(char *path)
 {
-	char			*new;
-	unsigned int	i;
-	unsigned int	a;
+	int		fd;
+	char	*line;
+	char	*holder_map;
+	char	*holder;
+	char	**map;
 
-	i = 0;
-	a = 0;
-	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (new == NULL)
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
 		return (NULL);
-	while (s1[i])
+	holder_map = ft_strdup("");
+	while (1)
 	{
-	new[i] = s1[i];
-	i++;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		holder = holder_map;
+		holder_map = ft_strjoin(holder, line);
+		free(line);
+		free(holder);
 	}
-	while (s2[a])
-		new[i++] = s2[a++];
-	new[i] = '\0';
-	return (new);
+	map = ft_split(holder_map, '\n');
+	free(holder_map);
+	close(fd);
+	return (map);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validate.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mukeles <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 00:45:04 by mukeles           #+#    #+#             */
+/*   Updated: 2022/06/28 00:45:05 by mukeles          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	is_retangular(char **map)
@@ -9,7 +21,7 @@ static int	is_retangular(char **map)
 		return (0);
 	while (map[i] != NULL)
 	{
-		if (ft_strlen(map[i]) != ft_strlen(map[0])) // her satırda aynı sayıda elaman varsa bu bir dikdörtgendir.
+		if (ft_strlen(map[i]) != ft_strlen(map[0]))
 			return (0);
 		i++;
 	}
@@ -28,7 +40,7 @@ static int	is_wall(char **map)
 		i++;
 	while (map[0][j] != '\0' && map[i - 1][j] != '\0')
 	{
-		if (map[0][j] != '1' || map[i - 1][j] != '1')  // en üst ve en alt satırı kontrol eder.
+		if (map[0][j] != '1' || map[i - 1][j] != '1')
 			return (0);
 		j++;
 	}
@@ -36,7 +48,7 @@ static int	is_wall(char **map)
 	len = ft_strlen(map[i]);
 	while (map[i] != NULL)
 	{
-		if (map[i][0] != '1' || map[i][len - 1] != '1') // en sol ve en sağ sütunu kontrol eder.
+		if (map[i][0] != '1' || map[i][len - 1] != '1')
 			return (0);
 		i++;
 	}
@@ -67,7 +79,7 @@ static int	is_pec(t_game *game)
 		}
 		i++;
 	}
-	if (game->n_player != 1 || game->n_exit == 0 || game->n_collect == 0) // haritadaki player, exit, collect sayısı kontrolü yapıyor.
+	if (game->n_player != 1 || game->n_exit == 0 || game->n_collect == 0)
 		return (0);
 	return (1);
 }
@@ -84,7 +96,7 @@ static int	is_validate(char **map)
 		while (map[i][j] != '\0')
 		{
 			if (map[i][j] != 'P' && map[i][j] != 'E' && map[i][j] != 'C'
-				&& map[i][j] != '0' && map[i][j] != '1')  // haritada P, E, C, 0 ve 1 den farklı bir karakter varsa hata verecek.
+				&& map[i][j] != '0' && map[i][j] != '1')
 				return (0);
 			j++;
 		}
