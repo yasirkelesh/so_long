@@ -14,11 +14,17 @@
 
 static int	argv_checker(char *argv)
 {
+	int i;
+	i = 0;
 		if (!argv)
 			return (0);
-		if (ft_strnstr(&argv[1], ".ber", ft_strlen(&argv[1])) != NULL)
-			return (1);
-		return (0);
+		while(argv[i])
+			i++;
+			
+	if(argv[i -1] == "r" && argv[i -2] == "e" && argv[i-3] == "b" && argv[i-4] == ".")
+		return (1);
+	
+	return (0);
 
 }
 
